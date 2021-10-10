@@ -15,7 +15,7 @@ function App () {
   
   }, 
   [])
-/*asd123*/
+
   return (
     <div id='container'>
       <h1>Random meal generator</h1>
