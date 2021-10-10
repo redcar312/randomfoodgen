@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import logo from './logo.svg'
+import './App.css'
+import { useEffect, useState } from 'react'
+/*Matias Hurtamo*/
+const URL = 'https://www.themealdb.com/api/json/v1/1/random.php'
+function App () {
+  const [meals, setMeals] = useState([])
+  async function getMeal () {
+    const response = await fetch(URL)
+    const json = await response.json()
+    setMeals(json.meals)
+  }
+  useEffect(() => {
+    getMeal()
+  
+  }, 
+  [])
+/*asd123*/
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id='container'>
+      <h1>Random meal generator</h1>
+      <div>
+      
+        {meals.map((meal) => {
+        
+          return (
+            <div key={meal.idMeal}>
+              <h2>{meal.strMeal}</h2>
+              <h3>Instructions</h3>
+              <p>{meal.strInstructions}</p>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+              
+            
+            </div>
+             
+          )
+        })}
+      </div>
+      <button onClick={() => getMeal()}>Generate a meal</button>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
